@@ -1,4 +1,5 @@
-Learn x86_64 Assembly Language
+# Learn x86_64 Assembly Language
+
 Welcome to the Learn x86_64 Assembly Language project! This repository is dedicated to helping beginners and enthusiasts learn 64-bit assembly programming for the x86_64 architecture. Whether you're new to assembly language or looking to deepen your understanding, you'll find valuable resources, tutorials, and examples here.
 
 - Table of Contents
@@ -32,7 +33,7 @@ Clone the Repository
 
 ```sh
 Copy code
-git clone https://github.com/your-username/learn-x86_64-assembly.git
+git clone https://github.com/notAnotherAverageJoe/Learn-x86_64-Assembly-Language
 cd learn-x86_64-assembly
 Set Up Your Environment
 
