@@ -2,17 +2,20 @@
 .intel_syntax noprefix
 
 .section .data
-    num1:   .quad 1000
-    num2:   .quad 4000
+    num1:   .quad 1111
+    num2:   .quad 2222
     result: .quad 0
 
 .section .text
+
+
 _start:
     # Load the first number into the RAX register
     mov rax, [num1]
     # Add the second number to the value in RAX
     add rax, [num2]
 
+    
     # Store the result in the 'result' variable
     mov [result], rax
 
@@ -22,6 +25,6 @@ _start:
     syscall
 
 
-# as -o adding.o adding.s
-# ld -o add adding.o
-# ./add
+# as -o subtract.o subtract.s
+# ld -o sub subtract.o
+# ./sub
