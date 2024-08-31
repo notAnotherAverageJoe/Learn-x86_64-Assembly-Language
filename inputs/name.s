@@ -1,52 +1,50 @@
-.global _start
-.intel_syntax noprefix
+section .bss
+    buffer resb 128 ; Reserve 128 bytes for input
 
-.section .data
-    prompt1: .asciz "Please enter your name: \n"
-    greet: .asciz "Hello "
-    newline: .asciz "\n"
+section .data
+    message db "Welcome to Assembly ", 0 ; Message to prepend
 
-.section .bss
-    name: .skip 20 * 1
+section .text
+    global _start ; Entry point for the program
 
-.section .text
-    # WIP WIP WIP
 _start:
-    # Write the prompt out
-    mov rax, 1          # syscall number for write
-    mov rdi, 1          # file descriptor for stdout
-    lea rsi, [prompt1]   # address of the prompt string
-    mov rdx, 21         # length of the prompt string (including newline)
-    syscall
+    ; Copy the message to the buffer
+    mov rsi, message
+    mov rdi, buffer
+    call copy_message
 
-    # Read the name
-    mov rax, 0          # syscall number for read
-    mov rdi, 0          # file descriptor for stdin
-    lea rsi, [name]     # buffer to store the name
-    mov rdx, 20         # maximum number of characters to read
-    syscall
+    ; Read input from stdin
+    mov rax, 0 ; syscall number for sys_read (0)
+    mov rdi, 0 ; file descriptor (0 for stdin)
+    mov rsi, buffer + 20 ; pointer to the buffer after the message
+    mov rdx, 108 ; number of bytes to read (128 - length of message)
+    syscall ; invoke the syscall
 
-    # Print greeting and name
-    mov rax, 1          # syscall number for write
-    mov rdi, 1          # file descriptor for stdout
-    lea rsi, [greet]    # address of the greeting string
-    mov rdx, 6          # length of the greeting string
-    syscall
+    ; Store the number of bytes read
+    mov rcx, rax
 
-    mov rax, 1          # syscall number for write
-    mov rdi, 1          # file descriptor for stdout
-    lea rsi, [name]     # address of the name
-    mov rdx, rax        # number of characters read (stored in rax)
-    syscall
+    ; Output the message and input to stdout
+    mov rax, 1 ; syscall number for sys_write (1)
+    mov rdi, 1 ; file descriptor (1 for stdout)
+    mov rsi, buffer ; pointer to the buffer
+    add rdx, 20 ; length of the message + number of bytes read
+    syscall ; invoke the syscall
 
-    # Print newline
-    mov rax, 1          # syscall number for write
-    mov rdi, 1          # file descriptor for stdout
-    lea rsi, [newline]  # address of the newline character
-    mov rdx, 1          # length of the newline character
-    syscall
+    ; Exit the program
+    mov rax, 60 ; syscall number for sys_exit (60)
+    xor rdi, rdi ; exit code 0
+    syscall ; invoke the syscall
 
-    # Exit
-    mov rax, 60          # syscall number for exit
-    mov rdi, 0           # exit code
-    syscall
+copy_message:
+    ; Copy the message to the buffer
+    mov rcx, 20 ; length of the message
+.copy_loop:
+    lodsb ; load byte from message
+    stosb ; store byte in buffer
+    loop .copy_loop
+    ret
+
+
+
+; nasm -f elf64 name.s
+; ld -o name name.o
