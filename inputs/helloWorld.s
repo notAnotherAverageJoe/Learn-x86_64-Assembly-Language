@@ -17,3 +17,7 @@ _start:
     mov rax, 60         ; syscall number for sys_exit (60)
     xor rdi, rdi        ; exit code 0
     syscall             ; invoke the syscall
+
+
+; nasm -f elf64 -o hello.o helloWorld.s
+ ; ld -o hello hello.o
