@@ -99,7 +99,7 @@ Clone Your Fork
 
 ```sh
 Copy code
-git clone https://github.com/your-username/learn-x86_64-assembly.git
+git clone https://github.com/notanotheraveragejoe/learn-x86_64-assembly.git
 cd learn-x86_64-assembly
 Create a Branch
 

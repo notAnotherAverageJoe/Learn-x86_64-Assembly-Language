@@ -2,8 +2,8 @@
 .intel_syntax noprefix
 
 .section .data
-    num1:   .quad 1000
-    num2:   .quad 4000
+    num1:   .quad 1111
+    num2:   .quad 2222
     result: .quad 0
 
 .section .text
