@@ -47,18 +47,18 @@ _start:
     jmp _start            # Restart the game
 
 go_to_space:
-    mov $1, %rax          # syscall: write
-    mov $1, %rdi          # file descriptor: stdout
-    lea go_space_msg(%rip), %rsi # pointer to message
-    mov $40, %rdx         # message length
+    mov $1, %rax          
+    mov $1, %rdi          
+    lea go_space_msg(%rip), %rsi 
+    mov $40, %rdx         
     syscall
     jmp _exit_game
 
 wait_for_time:
-    mov $1, %rax          # syscall: write
-    mov $1, %rdi          # file descriptor: stdout
-    lea wait_msg(%rip), %rsi # pointer to message
-    mov $41, %rdx         # message lenth
+    mov $1, %rax      
+    mov $1, %rdi          
+    lea wait_msg(%rip), %rsi 
+    mov $41, %rdx    
     syscall
     jmp _exit_game
 
@@ -83,6 +83,6 @@ _exit_game:
     xor %rdi, %rdi        # exit code 0
     syscall
 
-
+# AT&T syntax
 # as -o Space.o Space.s
 # ld -o Space Space.o

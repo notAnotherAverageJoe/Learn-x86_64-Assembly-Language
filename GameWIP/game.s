@@ -92,3 +92,6 @@ game_exit:
     mov rax, 60         # syscall: exit
     xor rdi, rdi        # exit code 0
     syscall
+
+# as -o game.o game.s
+# ld -o game game.o
