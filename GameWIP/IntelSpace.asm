@@ -4,7 +4,7 @@ section .data
     go_space_msg db "You have chosen to go to space! Blast off!", 10, 0
     wait_msg db "You have chosen to wait. Time is passing...", 10, 0
     reload_msg db "You choose to stay in town and reload your munitions...", 10, 0
-    merchant_msg db "As you wait for your ship's reload to complete, you begin seeing a few merchants heading your way.", 10, 0
+    merchant_msg db "You sell the few scraps you had collected around space", 10, 0
     invalid_choice db "Invalid choice. Please select 1, 2, or 3.", 10, 0
 
 section .bss
@@ -57,25 +57,25 @@ go_to_space:
 
 wait_for_time:
     mov rax, 1            ; syscall: write
-    mov rdi, 1            ; file descriptor: stdout
+    mov rdi, 1            
     lea rsi, [rel wait_msg] ; pointer to message
-    mov rdx, 41           ; message length
+    mov rdx, 41           
     syscall
     jmp _exit_game
 
 reloading:
-    mov rax, 1            ; syscall: write
-    mov rdi, 1            ; file descriptor: stdout
-    lea rsi, [rel reload_msg] ; pointer to reload message
-    mov rdx, 55           ; reload message length
+    mov rax, 1            
+    mov rdi, 1            
+    lea rsi, [rel reload_msg] 
+    mov rdx, 55           
     syscall
     jmp merchant
 
 merchant:
-    mov rax, 1            ; syscall: write
-    mov rdi, 1            ; file descriptor: stdout
-    lea rsi, [rel merchant_msg] ; pointer to merchant message
-    mov rdx, 80           ; message length
+    mov rax, 1            
+    mov rdi, 1            
+    lea rsi, [rel merchant_msg] 
+    mov rdx, 80           
     syscall
     jmp _exit_game
 
