@@ -97,6 +97,8 @@ sales:
     syscall
     jmp _exit_game
 
+    
+
 
 _exit_game:
     mov $60, %rax         # syscall: exit

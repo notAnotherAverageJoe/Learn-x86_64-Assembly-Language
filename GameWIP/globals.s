@@ -1,2 +1,3 @@
-.global money         # Make 'money' accessible globally
-money: .long 100      # Initialize money to 100
+.section .data
+.global money
+money: .long 100  # Starting money
