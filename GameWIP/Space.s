@@ -8,7 +8,7 @@ invalid_choice:  .asciz "Invalid choice. Please select 1, 2, or 3.\n"
 money_msg:       .asciz "Money: $100\n"
 ship_status_msg: .asciz "Ship Status: Operational\n"
 
-.extern money    # Declare 'money' as external
+.extern money    # money is in globals exernal file
 
 .section .bss
 input_buf:       .skip 1        # Buffer to store user input (1 byte)
@@ -61,7 +61,7 @@ _start:
     mov $1, %rax          # syscall: write
     mov $1, %rdi          # file descriptor: stdout
     lea invalid_choice(%rip), %rsi # pointer to message
-    mov $37, %rdx         # message length
+    mov $42, %rdx         # message length
     syscall
     jmp _start            # Restart the game
 
