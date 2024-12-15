@@ -24,18 +24,18 @@ _start:
     lea welcome_msg(%rip), %rsi # pointer to message
     mov $82, %rdx         # message length
     syscall
-        # Print money
+    # Print money
     mov $1, %rax           # syscall: write
     mov $1, %rdi           # stdout
     lea money_msg(%rip), %rsi  # Message pointer
-    mov $15, %rdx          # Length of the message
+    mov $12, %rdx          # Length of the message
     syscall
 
     # Print ship status
     mov $1, %rax           # syscall: write
     mov $1, %rdi           # stdout
     lea ship_status_msg(%rip), %rsi  # Message pointer
-    mov $20, %rdx          # Length of the message
+    mov $25, %rdx          # Length of the message
     syscall
 
 
