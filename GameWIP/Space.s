@@ -79,7 +79,7 @@ wait_for_time:
     mov $1, %rax      
     mov $1, %rdi          
     lea wait_msg(%rip), %rsi 
-    mov $43, %rdx         
+    mov $45, %rdx         
     syscall
     jmp _exit_game        # Exit the game
 
