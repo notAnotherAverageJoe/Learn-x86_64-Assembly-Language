@@ -58,8 +58,8 @@ _start:
     cmp $51, %al          # Compare input with '3' (ASCII 51)
     je sales              # If '3', sell wares
 
-    cmp $52, %al
-    je refuel
+    cmp $52, %al          # Compares input with '4' (ASCII 52)                    
+    je refuel             # if '4', refuel ship
 
     # Invalid input
     mov $1, %rax          # syscall: write
