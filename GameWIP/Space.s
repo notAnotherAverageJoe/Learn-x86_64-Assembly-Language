@@ -1,11 +1,12 @@
 .section .data
-welcome_msg:     .asciz "Welcome to the Space Game! Choose an option:\n1. Go to space\n2. Wait\n3. Sell Wares\n"
+welcome_msg:     .asciz "Welcome to the Space Game! Choose an option:\n1. Go to space\n2. Wait\n3. Sell Wares\n4. refuel\n"
 go_space_msg:    .asciz "You have chosen to go to space! Blast off!\n"
 wait_msg:        .asciz "You have chosen to wait. Time is passing...\n"
 sales_msg:       .asciz "You choose to stay in town and sell your wares...\n"
 merchant_msg:    .asciz "You sell the few scraps you had collected around space.\n"
 invalid_choice:  .asciz "Invalid choice. Please select 1, 2, or 3.\n"
 money_msg:       .asciz "Money: $100\n"
+refuel_msg:      .asciz "Refueling...\n"
 ship_status_msg: .asciz "Ship Status: Operational\n"
 
 .extern money    # money is in globals exernal file
@@ -22,7 +23,7 @@ _start:
     mov $1, %rax          # syscall: write
     mov $1, %rdi          # file descriptor: stdout
     lea welcome_msg(%rip), %rsi # pointer to message
-    mov $82, %rdx         # message length
+    mov $92, %rdx         # message length
     syscall
     # Print money
     mov $1, %rax           # syscall: write
@@ -58,7 +59,7 @@ _start:
     je sales              # If '3', sell wares
 
     cmp $52, %al
-    je 
+    je refuel
 
     # Invalid input
     mov $1, %rax          # syscall: write
@@ -87,8 +88,12 @@ wait_for_time:
     jmp _exit_game        # Exit the game
 
 refuel:
-    mov $1, rax  // syscall write
-    mov $1, rdi  // syscall stdout
+    mov $1, %rax  #  syscall write
+    mov $1, %rdi  #  syscall stdout
+    lea refuel_msg(%rip), %rsi #  pointer to msg
+    mov $14, %rdx   # length of message
+    syscall
+    jmp _exit_game
 
 sales:
     # Add 50 to money
