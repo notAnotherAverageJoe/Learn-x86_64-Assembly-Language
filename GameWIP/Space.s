@@ -57,6 +57,9 @@ _start:
     cmp $51, %al          # Compare input with '3' (ASCII 51)
     je sales              # If '3', sell wares
 
+    cmp $52, %al
+    je 
+
     # Invalid input
     mov $1, %rax          # syscall: write
     mov $1, %rdi          # file descriptor: stdout
@@ -82,6 +85,10 @@ wait_for_time:
     mov $45, %rdx         
     syscall
     jmp _exit_game        # Exit the game
+
+refuel:
+    mov $1, rax  // syscall write
+    mov $1, rdi  // syscall stdout
 
 sales:
     # Add 50 to money
