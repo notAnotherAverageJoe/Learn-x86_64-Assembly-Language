@@ -28,6 +28,12 @@ _start:
     lea rsi, [num1]           # buffer for the input
     mov rdx, 20               # number of bytes to read
     syscall
+    # test to print num1
+    mov rax, 1
+    mov rdi, 1
+    lea rsi, [num1]
+    mov rdx, 23
+    syscall
 
     # Print prompt for second number
     mov rax, 1                # syscall number for sys_write
@@ -41,6 +47,12 @@ _start:
     mov rdi, 0                # file descriptor (stdin)
     lea rsi, [num2]           # buffer for the input
     mov rdx, 20               # number of bytes to read
+    syscall
+    # test to print the second number
+    mov rax, 1                # syscall number for sys_write
+    mov rdi, 1                # file descriptor stdout
+    lea rsi, [num2]           # buffer for the number
+    mov rdx, 23               # number of bytes to read
     syscall
 
     # Print prompt for operation
