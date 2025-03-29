@@ -8,7 +8,7 @@ _start:
     ; read inputs from stdin
     mov rax, 0
     mov rdi, 0
-    mov rsi, buffer 
+    mov rsi, buffer
     mov rdx, 128
     syscall
 
