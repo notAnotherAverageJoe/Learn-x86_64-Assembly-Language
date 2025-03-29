@@ -3,6 +3,8 @@ section .bss
 
 section .data
     message db "Welcome to Assembly ", 0 ; Message to prepend
+    intro db "Enter your name: ", 10, 0 ; intro message
+    intro_length equ $ - intro
 
 section .text
     global _start ; Entry point for the program
@@ -12,6 +14,12 @@ _start:
     mov rsi, message
     mov rdi, buffer
     call copy_message
+
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, intro
+    mov rdx, intro_length
+    syscall
 
     ; Read input from stdin
     mov rax, 0 ; syscall number for sys_read (0)
