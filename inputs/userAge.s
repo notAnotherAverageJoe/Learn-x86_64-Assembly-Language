@@ -43,7 +43,7 @@ _start:
     mov rax, 1
     mov rdi, 1
     lea rsi, buffer
-    mov rdx, rcx              ; use updated length (excluding newline)
+    mov rdx, rcx              
     syscall
 
     ; print " years old!"
