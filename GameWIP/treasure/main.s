@@ -35,8 +35,13 @@ first_right:
     lea first_right_msg(%rip), %rsi
     mov $101, %rdx
     syscall
+    je _exit_game
 
 
+_exit_game:
+    mov $60, %rax         # syscall: exit
+    xor %rdi, %rdi        # exit code 0
+    syscall
 
 # AT&T syntax
 # as -o main.o main.s
