@@ -44,7 +44,7 @@ first_left:
     mov $1, %rax
     mov $1, %rdi
     lea first_left_msg(%rip), %rsi
-    mov $120, %rdi
+    mov $115, %rdx
     syscall
     jmp _exit_game
 
