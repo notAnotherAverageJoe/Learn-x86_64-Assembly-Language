@@ -24,7 +24,7 @@ _start:
 
     # process the input we receive
     movzbl input_buf(%rip), %eax
-    cmp $80, %al
+    cmp $49, %al
     je first_right
 
 
@@ -33,7 +33,7 @@ first_right:
     mov $1, %rax
     mov $1, %rdi
     lea first_right_msg(%rip), %rsi
-    mov $70, %rdx
+    mov $101, %rdx
     syscall
 
 
