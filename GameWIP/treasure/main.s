@@ -1,5 +1,5 @@
 .section .data
-welcome_msg: .asciz "Great treasure awaits you... if you can survive\n how will you proceed?\n 1. Take the path on the left.\n 2. Take the path on the right.\n "
+welcome_msg: .asciz "Great treasure awaits you... if you can survive\n how will you proceed?\n 1. Take the path on the right.\n 2. Take the path on the left.\n "
 first_right_msg: .asciz "You take the first right... seems safe, you wander into the dragons lair, unimpeded and safe for now\n."
 
 
@@ -13,7 +13,7 @@ _start:
     mov $1, %rax # write 
     mov $1, %rdi # stdout
     lea welcome_msg(%rip), %rsi # pointer to welcome msg
-    mov $140, %rdx
+    mov $136, %rdx
     syscall
 
     mov $0, %rax
@@ -23,8 +23,8 @@ _start:
     syscall
 
     # process the input we receive
-    movzbl input_buf(%rip), eax
-    cmp $49, %al
+    movzbl input_buf(%rip), %eax
+    cmp $80, %al
     je first_right
 
 
