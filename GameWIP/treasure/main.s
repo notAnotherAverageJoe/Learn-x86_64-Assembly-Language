@@ -11,4 +11,14 @@ _start:
 
     mov $1, %rax # write 
     mov $1, %rdi # stdout
-    lea welcome_msg(%rip), %rsi
+    lea welcome_msg(%rip), %rsi # pointer to welcome msg
+    mov $85, %rdx
+    syscall
+
+    mov $0, %rax
+    mov $0, %rdi
+    lea input_buf(%rip), %rsi
+    mov $1, %rdx # its only 1 bye for the input
+    syscall
+
+
