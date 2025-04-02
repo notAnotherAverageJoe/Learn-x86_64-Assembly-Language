@@ -1,5 +1,6 @@
 .section .data
 welcome_msg: .asciz "Great treasure awaits you... if you can survive\n how will you proceed?\n 1. Take the path on the left.\n 2. Take the path on the right.\n "
+first_right_msg: .asciz "You take the first right... seems safe, you wander into the dragons lair, unimpeded and safe for now\n."
 
 
 .section .bss
@@ -21,6 +22,19 @@ _start:
     mov $1, %rdx # its only 1 bye for the input
     syscall
 
+    # process the input we receive
+    movzbl input_buf(%rip), eax
+    cmp $49, %al
+    je first_right
+
+
+
+first_right:
+    mov $1, %rax
+    mov $1, %rdi
+    lea first_right_msg(%rip), %rsi
+    mov $70, %rdx
+    syscall
 
 
 
