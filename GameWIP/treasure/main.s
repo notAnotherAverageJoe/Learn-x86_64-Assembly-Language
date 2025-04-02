@@ -3,7 +3,7 @@ welcome_msg: .asciz "Great treasure awaits you... if you can survive\n how will 
 
 
 .section .bss
-input_buf .skip 1
+input_buf: .skip 1
 
 .section .text
 .global _start
@@ -12,7 +12,7 @@ _start:
     mov $1, %rax # write 
     mov $1, %rdi # stdout
     lea welcome_msg(%rip), %rsi # pointer to welcome msg
-    mov $85, %rdx
+    mov $140, %rdx
     syscall
 
     mov $0, %rax
@@ -21,4 +21,10 @@ _start:
     mov $1, %rdx # its only 1 bye for the input
     syscall
 
+
+
+
+# AT&T syntax
+# as -o main.o main.s
+# ld -o main main.o
 
