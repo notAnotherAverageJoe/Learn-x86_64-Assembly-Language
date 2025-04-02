@@ -1,7 +1,7 @@
 .section .data
 welcome_msg: .asciz "Great treasure awaits you... if you can survive\n how will you proceed?\n 1. Take the path on the right.\n 2. Take the path on the left.\n "
 first_right_msg: .asciz "You take the first right... seems safe, you wander into the dragons lair, unimpeded and safe for now\n."
-
+first_left_msg: .asciz "You take the first left... you hear a strange gutter growl coming from behind you... you should Ru.... You died.\n"
 
 .section .bss
 input_buf: .skip 1
@@ -36,6 +36,11 @@ first_right:
     mov $101, %rdx
     syscall
     je _exit_game
+
+first_left:
+    mov $1, %rax
+    mov $1, %rdi
+    lea first_left_msg(%rip), %rsi
 
 
 _exit_game:
