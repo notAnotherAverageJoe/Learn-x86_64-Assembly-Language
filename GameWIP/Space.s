@@ -93,7 +93,7 @@ refuel:
     lea refuel_msg(%rip), %rsi #  pointer to msg
     mov $14, %rdx   # length of message
     syscall
-    jmp _exit_game
+    jmp _start
 
 sales:
     # Add 50 to money
