@@ -27,6 +27,9 @@ _start:
     cmp $49, %al
     je first_right
 
+    cmp $50, %al
+    je first_left
+
 
 
 first_right:
@@ -35,7 +38,7 @@ first_right:
     lea first_right_msg(%rip), %rsi
     mov $101, %rdx
     syscall
-    je _exit_game
+    jmp _exit_game
 
 first_left:
     mov $1, %rax
@@ -43,7 +46,7 @@ first_left:
     lea first_left_msg(%rip), %rsi
     mov $120, %rdi
     syscall
-    je _exit_game
+    jmp _exit_game
 
 
 _exit_game:
